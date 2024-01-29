@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_clone/core/constants/constants.dart';
-import 'package:reddit_clone/features/auth/contro;;er/auth_controller.dart';
+import 'package:reddit_clone/features/auth/controller/auth_controller.dart';
 import 'package:reddit_clone/theme/palette.dart';
 
 class SignInButton extends ConsumerWidget {
