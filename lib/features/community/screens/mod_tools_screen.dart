@@ -17,7 +17,7 @@ class ModsToolsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mod Tools'),
+        title: const Text('Mod Tools'),
       ),
       body: Column(children: [
         ListTile(

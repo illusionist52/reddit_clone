@@ -12,7 +12,7 @@ import 'dart:io';
 
 class EditCommunityScreen extends ConsumerStatefulWidget {
   final String name;
-  const EditCommunityScreen({
+  const EditCommunityScreen({super.key, 
     required this.name,
   });
 
@@ -49,7 +49,7 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
         data: (community) => Scaffold(
               backgroundColor: Pallete.darkModeAppTheme.backgroundColor,
               appBar: AppBar(
-                title: Text('Edit community'),
+                title: const Text('Edit community'),
                 centerTitle: true,
                 actions: [
                   TextButton(

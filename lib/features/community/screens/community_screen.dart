@@ -10,7 +10,7 @@ import 'package:routemaster/routemaster.dart';
 class CommunityScreen extends ConsumerWidget {
   final String name;
 
-  const CommunityScreen({
+  const CommunityScreen({super.key, 
     required this.name,
   });
 
