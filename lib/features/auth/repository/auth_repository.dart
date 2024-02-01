@@ -16,7 +16,7 @@ final authRepositoryProvider = Provider((ref) => AuthRepository(
     googleSignIn: ref.read(googleSignInProvider)));
 
 class AuthRepository {
-  final FirebaseFirestore _firestore ;
+  final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
 
@@ -74,5 +74,10 @@ class AuthRepository {
   Stream<UserModel> getUserData(String uid) {
     return _users.doc(uid).snapshots().map(
         (event) => UserModel.fromMap(event.data() as Map<String, dynamic>));
+  }
+
+  void logout() async {
+    await _googleSignIn.signOut();
+    await _auth.signOut();
   }
 }

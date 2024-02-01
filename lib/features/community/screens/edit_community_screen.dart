@@ -7,12 +7,14 @@ import 'package:reddit_clone/core/common/loader.dart';
 import 'package:reddit_clone/core/constants/constants.dart';
 import 'package:reddit_clone/core/utils.dart';
 import 'package:reddit_clone/features/community/controller/community_controller.dart';
+import 'package:reddit_clone/models/community_model.dart';
 import 'package:reddit_clone/theme/palette.dart';
 import 'dart:io';
 
 class EditCommunityScreen extends ConsumerStatefulWidget {
   final String name;
-  const EditCommunityScreen({super.key, 
+  const EditCommunityScreen({
+    super.key,
     required this.name,
   });
 
@@ -43,8 +45,17 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
     }
   }
 
+  void save(Community community) {
+    ref.read(communityControllerProvider.notifier).editCommunity(
+        profileFile: profileFile,
+        bannerFile: bannerFile,
+        community: community,
+        context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(communityControllerProvider);
     return ref.watch(getCommunityNameProvider(widget.name)).when(
         data: (community) => Scaffold(
               backgroundColor: Pallete.darkModeAppTheme.backgroundColor,
@@ -53,14 +64,16 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                 centerTitle: true,
                 actions: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        save(community);
+                      },
                       child: const Text(
                         'Save',
                         style: TextStyle(color: Colors.blue),
                       ))
                 ],
               ),
-              body: Padding(
+              body: isLoading ? const Loader() : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
