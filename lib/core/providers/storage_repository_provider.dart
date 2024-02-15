@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,7 +21,7 @@ class StorageRepository {
       : _firebaseStorage = firebaseStorage;
 
   FutureEither<String> storeFile(
-      {required String path, required String id, required File? file}) async {
+      {required String path, required String id, required File? file, Uint8List? webFile}) async {
     try {
       final ref = _firebaseStorage.ref().child(path).child(id);
       UploadTask uploadTask = ref.putFile(file!);

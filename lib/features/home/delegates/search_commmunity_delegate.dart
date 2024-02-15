@@ -17,7 +17,7 @@ class SearchCommunityDelegate extends SearchDelegate {
       required this.ref});
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
+    
     return [IconButton(onPressed: () {}, icon: const Icon(Icons.close))];
   }
 

@@ -45,7 +45,7 @@ class _AddModsScreenState extends ConsumerState<AddModsScreen> {
       appBar: AppBar(actions: [
         IconButton(
           onPressed: saveMods,
-          icon: Icon(Icons.done),
+          icon: const Icon(Icons.done),
         ),
       ]),
       body: ref.watch(getCommunityNameProvider(widget.name)).when(
