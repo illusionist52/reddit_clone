@@ -19,7 +19,7 @@ class Constants {
   ];
 
   static const IconData up = IconData(0xe800, fontFamily: 'MyFlutterApp', fontPackage: null);
-  static const IconData down = IconData(0xe801, fontFamily: 'MyFlutterApp', fontPackage: null);
+  static const IconData down = IconData(0xe801, fontFamily: 'MyflutterApp', fontPackage: null);
 
   static const awardsPath = 'assets/images/awards';
 

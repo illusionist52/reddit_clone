@@ -7,6 +7,7 @@ import 'package:reddit_clone/core/failure.dart';
 import 'package:reddit_clone/core/providers/firenase_providers.dart';
 import 'package:reddit_clone/core/typedef.dart';
 import 'package:reddit_clone/models/community_model.dart';
+import 'package:reddit_clone/models/post_model.dart';
 
 final communityRepositoryProvider = Provider((ref) {
   return CommunityRepository(firestore: ref.watch(firestoreProvider));
@@ -112,7 +113,18 @@ class CommunityRepository {
       return left(Failure(e.toString()));
     }
   }
-
+    Stream<List<Post>> getCommunityPosts(String name) {
+    return _posts.where('communityName', isEqualTo: name).orderBy('createdAt', descending: true).snapshots().map(
+          (event) => event.docs
+              .map(
+                (e) => Post.fromMap(
+                  e.data() as Map<String, dynamic>,
+                ),
+              )
+              .toList(),
+        );
+  }
+   CollectionReference get _posts => _firestore.collection(FirebaseConstants.postsCollection);
   CollectionReference get _communities =>
       _firestore.collection(FirebaseConstants.communitiesCollection);
 }
